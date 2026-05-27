@@ -1,0 +1,36 @@
+name: Code Quality Checks
+on: [pull_request, push]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # 1. CodeQL (Security + Bugs)
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: 'java'
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+      # 2. SpotBugs (Bug Detection)
+      - name: Run SpotBugs
+        run: mvn spotbugs:check
+
+      # 3. PMD (Code Smells)
+      - name: Run PMD
+        run: mvn pmd:check
+
+      # 4. Dependency Check
+      - name: Dependency Check
+        uses: jeremylong/DependencyCheck_Action@main
+        with:
+          project: 'User_Service'
+          path: '.'
+          format: 'JSON'
