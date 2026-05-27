@@ -4,6 +4,7 @@ import com.HealthProTeach.User.Service.DTO.PatientSearchResponse;
 import com.HealthProTeach.User.Service.MapStruct.PatientMapper;
 import com.HealthProTeach.User.Service.Records.PatientDTO;
 import com.HealthProTeach.User.Service.Records.PatientSearchdto;
+import com.HealthProTeach.User.Service.Records.PatientUpdateDTO;
 import com.HealthProTeach.User.Service.Entity.Patient;
 import com.HealthProTeach.User.Service.Enum.UserRole;
 import com.HealthProTeach.User.Service.Repo.PatientRepo;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -40,6 +42,25 @@ public class PatientService {
         return patientRepo.save(patient) != null
                 ? "Patient Registered Successfully"
                 : "Patient Registration Failed";
+    }
+
+    public String updatePatient(Long id, PatientUpdateDTO patientUpdateDTO) {
+        Optional<Patient> optionalPatient = patientRepo.findById(id);
+        if (optionalPatient.isEmpty()) {
+            return "Patient not found with id: " + id;
+        }
+        Patient patient = optionalPatient.get();
+        if (patientUpdateDTO.name() != null && !patientUpdateDTO.name().isBlank()) {
+            patient.setName(patientUpdateDTO.name());
+        }
+        if (patientUpdateDTO.email() != null && !patientUpdateDTO.email().isBlank()) {
+            patient.setEmail(patientUpdateDTO.email());
+        }
+        if (patientUpdateDTO.phoneNumber() != null && !patientUpdateDTO.phoneNumber().isBlank()) {
+            patient.setPhoneNo(patientUpdateDTO.phoneNumber());
+        }
+        patientRepo.save(patient);
+        return "Patient updated successfully";
     }
 
     /*
