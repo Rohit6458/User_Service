@@ -1,0 +1,43 @@
+{
+  "version": "0.1",
+  "project": {
+    "name": "Full Health Tech Pro - User-Service",
+    "baseUrl": "http://localhost:8082",
+    "description": "Doctor and Patient API endpoints for User-Service"
+  },
+  "default": {
+    "workspace": "health-tech-pro",
+    "collection": "user-service-api",
+    "environment": "local"
+  },
+  "workspaces": {
+    "health-tech-pro": {
+      "id": "7f07ec32-b794-4f3d-9e03-966446b364c7",
+      "name": "Full Health Tech Pro",
+      "type": "personal"
+    }
+  },
+  "collections": {
+    "user-service-api": {
+      "id": "07ebc8a4-0825-4697-97db-4d8dfe8bb4a2",
+      "uid": "41562982-07ebc8a4-0825-4697-97db-4d8dfe8bb4a2",
+      "name": "User-Service API",
+      "workspace": "health-tech-pro",
+      "description": "Doctor and Patient API tests — server runs on http://localhost:8082",
+      "requestCount": 6
+    }
+  },
+  "environments": {
+    "local": {
+      "id": "f3df825a-9aac-4085-8f89-74d3f9d573b5",
+      "uid": "41562982-f3df825a-9aac-4085-8f89-74d3f9d573b5",
+      "name": "User-Service Local",
+      "workspace": "health-tech-pro",
+      "variables": {
+        "base_url": "http://localhost:8082",
+        "doctor_id": "1",
+        "patient_id": "1"
+      }
+    }
+  }
+}
