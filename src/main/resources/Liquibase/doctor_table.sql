@@ -1,17 +1,21 @@
-/*--liquibase formatted sql
+--liquibase formatted sql
 --changeset Rohit:create-doctor-table
 
-CREATE TABLE doctors (
+CREATE TABLE doctor (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    specialization VARCHAR(255),
+    licence_number VARCHAR(100),
+    is_active BOOLEAN DEFAULT TRUE,
+    avaliable_days DOUBLE,
+    work_start_time TIME,
+    work_end_time TIME,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
 
-                         id CHAR(36) primary key not null,
-                         user_id CHAR(36),
-                         specialization VARCHAR(255),
-                         license_number VARCHAR(255) UNIQUE,
-                         slot_duration_mins INT,
-                         available_days VARCHAR(100),
-                         work_start_time TIME,
-                         work_end_time TIME,
-                         CONSTRAINT fk_doctor_user
-                             FOREIGN KEY (user_id)
-                                 REFERENCES patients(id)
-);*/
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_doctor_email (email),
+    UNIQUE KEY uk_doctor_licenseNumber (licence_number)
+);

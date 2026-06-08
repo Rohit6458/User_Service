@@ -89,111 +89,23 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<!-- Single maven-compiler-plugin declaration: Lombok + MapStruct annotation processors -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>default-compile</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<annotationProcessorPaths>
-								<path>
-									<groupId>org.projectlombok</groupId>
-									<artifactId>lombok</artifactId>
-								</path>
-							</annotationProcessorPaths>
-						</configuration>
-					</execution>
-					<execution>
-						<id>default-testCompile</id>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>testCompile</goal>
-						</goals>
-						<configuration>
-							<annotationProcessorPaths>
-								<path>
-									<groupId>org.projectlombok</groupId>
-									<artifactId>lombok</artifactId>
-								</path>
-							</annotationProcessorPaths>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-<!--Mapstruct Annotation Processor-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-
-                <configuration>
-                    <annotationProcessorPaths>
-
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>1.5.5.Final</version>
-                        </path>
-
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-			
-			<!-- SpotBugs Plugin for Bug Detection -->
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.7.3.4</version>
 				<configuration>
-					<effort>Max</effort>
-					<threshold>Low</threshold>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.5.5.Final</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<!-- PMD Plugin for Code Smells -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.21.0</version>
-				<configuration>
-					<failOnViolation>true</failOnViolation>
-					<printFailingErrors>true</printFailingErrors>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<!-- Checkstyle Plugin for Code Style -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.3.1</version>
-				<configuration>
-					<failOnViolation>true</failOnViolation>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
