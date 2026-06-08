@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### JDK folder accidentally placed inside project ###
+src/main/java/com/HealthProTeach/User/Service/Controller/oracleJdk-26/
+
+### Postman config ###
+.postman.json
